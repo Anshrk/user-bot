@@ -1,24 +1,24 @@
 {
-  "name": "discord-user",
-  "version": "1.2.2",
-  "description": "Library made to make discord user bots",
+  "name": "discorduserbot",
+  "version": "1.0.0",
+  "description": "A Library to use a discord user bot account",
   "main": "src/exports.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Anshrk/discord-user.git"
+    "url": "git+https://github.com/Anshrk/user-bot.git"
   },
   "dependencies": {
     "node-fetch": "^2.6.1",
     "ws": "^7.4.3"
   },
   "bugs": {
-    "url": "https://github.com/Anshrk/discord-user/issues"
+    "url": "https://github.com/Anshrk/user-bot/issues"
   },
-  "homepage": "https://github.com/Anshrk/discord-user",
+  "homepage": "https://github.com/Anshrk/user-bot",
   "keywords": ["discord", "userbots", "selfbots", "bots", "discord.js", "discord user bots", "api"],
-  "author": "Sopur",
+  "author": "Anshrk",
   "license": "GNU"
 }
