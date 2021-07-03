@@ -14,7 +14,7 @@
 
 Here's a small example of this library:
 ```js
-const Discord = require("discord-user");
+const Discord = require("discorduserbot");
 const client = new Discord.Client("Token goes here.");
 
 client.on.ready = function() {
