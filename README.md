@@ -117,33 +117,22 @@ client.create_server("Example server name", "2TffvPucqHkN");
 
 # Event listeners
 
-- `heartbeat_sent` - Will be used when a heartbeat is sent from the client
-
-- `heartbeat_received` - Will be used when a heartbeat is received from the client
-
-- `ready` - Will be used when the client is ready and connected to the Discord WebSocket server
-
-- `message_create` - Will be used when a message is created
-
-- `message_edit` - Will be used when a message is edited
-
-- `message_delete` - Will be used when a message is deleted
-
-- `message_delete_bulk` - Will be used when messages are deleted in bulk
-
-- `embed_sent` - Will be used when a embed is sent
-
-- `presence_update` - Will be used when a users presence is updated
-
-- `sessions_replace` - Will be used when sessions are replaced
-
-- `message_read` - Will be used when you/the client read a message
-
-- `channel_update` - Will be used when a channel is updated
-
-- `guild_join` - Will be used when a guild is added to your user
-
-- `guild_leave` - Will be used when a guild is removed from your user
+|       Event           |                     Description                     |
+| --------------------- | --------------------------------------------------- |
+| `heartbeat_sent`      | Will be used when a heartbeat is sent from the client
+| `heartbeat_received`  | Will be used when a heartbeat is received from the client
+| `ready`               | Will be used when the client is ready and connected to the Discord WebSocket server
+| `message_create`      | Will be used when a message is created
+| `message_edit`        | Will be used when a message is edited
+| `message_delete`      | Will be used when a message is deleted
+| `message_delete_bulk` | Will be used when messages are deleted in bulk
+| `embed_sent`          | Will be used when a embed is sent
+| `presence_update`     | Will be used when a users presence is updated
+| `sessions_replace`    | Will be used when sessions are replaced
+| `message_read`        | Will be used when you/the client read a message
+| `channel_update`      | Will be used when a channel is updated
+| `guild_join`          | Will be used when a guild is added to your user
+| `guild_leave`         | Will be used when a guild is removed from your user
 
 ```
 
