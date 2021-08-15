@@ -1,8 +1,9 @@
 const fetch = require("node-fetch");
 const WebSocket = require("ws");
 const Packet = require("./packet.js");
+const { EventEmitter } = require("events");
 
-class Client {
+class Client extends EventEmitter {
     constructor(token) {
         this.config = {
             api: "v8",
@@ -18,7 +19,7 @@ class Client {
         this.lastheartbeat = undefined;
         this.ready_status = 0;
         this.typingLoop = function () { };
-        this.on = {
+        /*this.on = {
             gateway: function () { },
             heartbeat_sent: function () { },
             heartbeat_received: function () { },
@@ -62,7 +63,7 @@ class Client {
             voice_server_update: function (message) { },
             webhooks_update: function (message) { },
             interaction_update: function (message) { },*/
-        };
+        };*/
 
         ws.on("message", (message) => {
             message = JSON.parse(message);
@@ -77,12 +78,12 @@ class Client {
                         this.heartbeattimer = message.d.heartbeat_interval;
                         this.heartbeatinterval = setInterval(() => {
                             ws.send(JSON.stringify(new Packet.HeartBeat(this.lastheartbeat)));
-                            this.on.heartbeat_sent();
+                            this.emit("heartbeat_sent");
                         }, this.heartbeattimer);
                         ws.send(JSON.stringify(new Packet.GateWayOpen(token, this.config)));
-                        this.on.gateway();
+                        this.emit("gateway");
                     } else {
-                        this.on.heartbeat_received();
+                        this.emit("heartbeat_received");
                     };
                     break;
                 }
@@ -111,56 +112,56 @@ class Client {
                     this._trace = user._trace; // Stringified json
 
                     this.ready_status = 1;
-                    this.on.ready();
+                    this.emit("ready");
                     break;
                 };
                 case "MESSAGE_CREATE": {
-                    this.on.message_create(message.d);
+                    this.emit("message_create", message.d);
                     break;
                 }
                 case "MESSAGE_UPDATE": {
                     switch (message.type) {
                         case undefined: { // Embed
-                            this.on.embed_sent(message.d);
+                            this.emit("embed_sent", message.d);
                             break;
                         }
                         case 0: { // Message edit
-                            this.on.message_edit(message.d);
+                            this.emit("message_edit", message.d);
                             break;
                         }
                     }
                     break;
                 }
                 case "PRESENCE_UPDATE": {
-                    this.on.presence_update(message.d);
+                    this.emit("presence_update", message.d);
                     break;
                 }
                 case "MESSAGE_DELETE": {
-                    this.on.message_delete(message.d);
+                    this.emit("message_delete", message.d);
                     break;
                 }
                 case "MESSAGE_DELETE_BULK": {
-                    this.on.message_delete_bulk(message.d);
+                    this.emit("message_delete_bulk", message.d);
                     break;
                 }
                 case "SESSIONS_REPLACE": {
-                    this.on.sessions_replace(message.d);
+                    this.emit("sessions_replace", message.d);
                     break;
                 }
                 case "MESSAGE_ACK": {
-                    this.on.message_read(message.d);
+                    this.emit("message_read", message.d);
                     break;
                 }
                 case "CHANNEL_UPDATE": {
-                    this.on.channel_update(message.d);
+                    this.emit("channel_update", message.d);
                     break;
                 }
                 case "GUILD_CREATE": {
-                    this.on.guild_join(message.d);
+                    this.emit("guild_join", message.d);
                     break;
                 }
                 case "GUILD_DELETE": {
-                    this.on.guild_leave(message.d);
+                    this.emit("guild_leave", message.d);
                 }
 
             };
