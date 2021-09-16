@@ -26,8 +26,8 @@ class GateWayOpen {
             },
             "intents": 7
         };
-    };
-};
+    }
+}
 
 class HeartBeat {
     constructor(lastpacket) {
@@ -35,8 +35,8 @@ class HeartBeat {
             "op": 1,
             "d": (lastpacket === undefined) ? null : Number(lastpacket),
         };
-    };
-};
+    }
+}
 
 class GuildRequest {
     constructor(guildid, limit) {
@@ -48,7 +48,7 @@ class GuildRequest {
                 "limit": Number(limit)
             }
         };
-    };
-};
+    }
+}
 
 module.exports = { GateWayOpen, HeartBeat, GuildRequest };

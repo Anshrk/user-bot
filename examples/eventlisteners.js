@@ -5,7 +5,7 @@ client.on("heartbeat_sent", () => {}; // Will be used when a heartbeat is sent f
 
 client.on("heartbeat_received", () => {}; // Will be used when a heartbeat is received from the client
 
-client.on("ready = function () {}; // Will be used when the client is ready and connected to the Discord WebSocket server
+client.on("ready", () => {}; // Will be used when the client is ready and connected to the Discord WebSocket server
 
 client.on("message_create", (message) => {}; // Will be used when a message is created
 
