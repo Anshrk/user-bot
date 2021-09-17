@@ -5,6 +5,7 @@ const { EventEmitter } = require("events");
 
 class Client extends EventEmitter {
     constructor(token) {
+        super();
         this.config = {
             api: "v8",
             wsurl: "wss://gateway.discord.gg/?v=6&encoding=json",
@@ -62,7 +63,7 @@ class Client extends EventEmitter {
             voice_state_update: function (message) { },
             voice_server_update: function (message) { },
             webhooks_update: function (message) { },
-            interaction_update: function (message) { },*/
+            interaction_update: function (message) { },
         };*/
 
         ws.on("message", (message) => {
@@ -70,7 +71,7 @@ class Client extends EventEmitter {
             setTimeout(() => {
                 if (this.ready_status === 0) {
                     console.log("Discord is taking a while to respond. Maybe incorrect token?");
-                };
+                }
             }, 5000);
             switch (message.t) {
                 case null: { // gateway
@@ -84,11 +85,11 @@ class Client extends EventEmitter {
                         this.emit("gateway");
                     } else {
                         this.emit("heartbeat_received");
-                    };
+                    }
                     break;
                 }
                 case "READY": { // Gateway res
-                    let user = message.d;
+                    const user = message.d;
                     this.user_settings = user.user_settings; // An object full of properties of settings
                     this.user = user.user // An object full of properties about the user like username etc
                     this.tutorial = user.tutorial; // A property
@@ -114,7 +115,7 @@ class Client extends EventEmitter {
                     this.ready_status = 1;
                     this.emit("ready");
                     break;
-                };
+                }
                 case "MESSAGE_CREATE": {
                     this.emit("message_create", message.d);
                     break;
@@ -164,9 +165,9 @@ class Client extends EventEmitter {
                     this.emit("guild_leave", message.d);
                 }
 
-            };
+            }
         });
-    };
+    }
 
 
     async fetchmessages(limit, channelid) {
@@ -194,7 +195,7 @@ class Client extends EventEmitter {
                 });
             });
         });
-    };
+    }
 
     /**
      * Fetches all the info about the guild given
@@ -226,7 +227,7 @@ class Client extends EventEmitter {
                 });
             });
         });
-    };
+    }
 
     /**
      * Joins a server or group chat
@@ -259,7 +260,7 @@ class Client extends EventEmitter {
                 });
             });
         });
-    };
+    }
 
     /**
      * Leaves a server
@@ -288,7 +289,7 @@ class Client extends EventEmitter {
                 res(response);
             });
         });
-    };
+    }
 
     /**
      * Sends a message with the channel given
@@ -325,7 +326,7 @@ class Client extends EventEmitter {
                 });
             });
         });
-    };
+    }
 
     /**
      * Replies to a message
@@ -375,7 +376,7 @@ class Client extends EventEmitter {
                 });
             });
         });
-    };
+    }
 
     /**
      * Deletes a message
@@ -406,7 +407,7 @@ class Client extends EventEmitter {
                 res(response);
             });
         });
-    };
+    }
 
     /**
      * Types in the channel given
@@ -450,13 +451,13 @@ class Client extends EventEmitter {
                 "mode": "cors"
             });
         }, this.config.typinginterval);
-    };
+    }
 
     async stopType() {
         if (this.ready_status === 0) return new Error("Client still in connecting state.");
         clearInterval(this.typingLoop);
         return true;
-    };
+    }
 
     /**
      * Creates a group with the people you want
@@ -491,7 +492,7 @@ class Client extends EventEmitter {
                 });
             });
         });
-    };
+    }
 
     /**
      * Leaves a group
@@ -522,7 +523,7 @@ class Client extends EventEmitter {
                 });
             });
         });
-    };
+    }
 
     /**
      * Removes someone from a group
@@ -552,7 +553,7 @@ class Client extends EventEmitter {
                 res(response);
             });
         });
-    };
+    }
 
     /**
      * Renames a group
@@ -585,7 +586,7 @@ class Client extends EventEmitter {
                 res(response);
             });
         });
-    };
+    }
 
     /**
      * Creates a server
@@ -624,7 +625,7 @@ class Client extends EventEmitter {
                 });
             });
         });
-    };
-};
+    }
+}
 
 module.exports = Client;

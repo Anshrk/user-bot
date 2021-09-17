@@ -18,7 +18,18 @@
     "url": "https://github.com/Anshrk/user-bot/issues"
   },
   "homepage": "https://github.com/Anshrk/user-bot",
-  "keywords": ["discord", "userbots", "selfbots", "bots", "discord.js", "discord user bots", "api"],
+  "keywords": [
+    "discord",
+    "userbots",
+    "selfbots",
+    "bots",
+    "discord.js",
+    "discord user bots",
+    "api"
+  ],
   "author": "Anshrk",
-  "license": "GNU"
+  "license": "GNU",
+  "devDependencies": {
+    "eslint": "^7.32.0"
+  }
 }
