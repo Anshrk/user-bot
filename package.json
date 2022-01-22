@@ -11,7 +11,7 @@
     "url": "git+https://github.com/Anshrk/user-bot.git"
   },
   "dependencies": {
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^3.1.1",
     "ws": "^7.4.3"
   },
   "bugs": {
